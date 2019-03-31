@@ -115,7 +115,7 @@ export class AuthEffects {
     ofType(AuthActionTypes.NOT_AUTHENTICATED),
     tap(() => {
       if (this.authService.redirectURL) { this.router.navigate(['/login']);
-      } else { console.log('[ NOT AUTHENTICATED ] redirectURL does not exist and token was not found..'); } // TODO: Finish else statement w/redirect?
+      } else { } // TODO: Combine all Failures into one action/effect/reducer to show error message
     } )
   );
 
@@ -209,11 +209,11 @@ export class AuthEffects {
     })
   );
 
-  @Effect()
+  @Effect({ dispatch: false })
   GetUserInfoFailure: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.GET_USER_INFO_FAILURE),
     map((action: GetUserInfoFailure) => action.payload),
-    map((error) => console.log('Failed to get user info, here is the error => ', error) )
+    // map((error) => console.log('Failed to get user info, here is the error => ', error) )
   );
 
 }
