@@ -62,3 +62,7 @@ typings/
 
 # PyCharm project
 .idea/
+
+# Mac files
+.DS_Store
+
